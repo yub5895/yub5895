@@ -1,0 +1,162 @@
+header {
+  background-color: skyblue;
+  height: 80px;
+  display: flex;
+  justify-content: space-around;
+  align-items: center;
+}
+
+header h1 {
+  font-size: 1.2rem;
+  font-weight: bold;
+}
+
+header a {
+  font-size: 1.2rem;
+  font-weight: bold;
+  margin: 10px;
+  cursor: pointer;
+}
+
+section {
+  background-color: lavender;
+  height: 50vw;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  flex-direction: column;
+}
+
+#home {
+  padding-bottom: 30px;
+}
+
+#home h1 {
+  font-size: 8rem;
+  font-weight: bold;
+  margin-bottom: 120px;
+}
+
+#home h2 {
+  font-size: 4rem;
+  margin-bottom: 80px;
+}
+
+#home a {
+  font-size: 3rem;
+  margin-bottom: 120px;
+  border: 2px solid black;
+  border-radius: 20px;
+  cursor: pointer;
+}
+
+#sideBar {
+  position: fixed;
+  width: 100px;
+  height: 500px;
+  background-color: yellow;
+  bottom: 50%;
+  transform: translateY(+50%);
+  right: 15px;
+  display: flex;
+  flex-direction: column;
+  border: 2px solid black;
+  cursor: pointer;
+}
+
+#sideBar a {
+  height: 100px;
+  margin-top: 50%;
+  border-bottom: 2px solid black;
+  font-weight: bold;
+  width: 100%;
+  padding-left: 25px;
+}
+
+#sideBar #skillA {
+  border-bottom: none;
+}
+
+#profile h1 {
+  font-size: 4rem;
+  font-weight: bold;
+}
+
+#profile-container {
+  background-color: yellowgreen;
+  width: 900px;
+  height: 300px;
+  padding: 50px;
+  box-sizing: border-box;
+  display: flex;
+  flex-wrap: wrap;
+  justify-content: center;
+  align-items: center;
+}
+
+.profileItem {
+  width: 33.3%;
+  height: 50%;
+  display: flex;
+  justify-content: center;
+  flex-direction: column;
+  align-items: center;
+}
+
+#introduce-container {
+  margin: 10px;
+}
+
+#introduce h1 {
+  font-size: 4rem;
+  font-weight: bold;
+}
+
+#merit {
+  display: flex;
+}
+
+#attitude {
+  display: flex;
+}
+
+#motive {
+  display: flex;
+}
+
+.Intro1 {
+  width: 200px;
+  height: 200px;
+  background-color: aquamarine;
+  margin: 10px;
+}
+
+.Intro2 {
+  width: 800px;
+  height: 200px;
+  background-color: aqua;
+  margin: 10px;
+}
+
+#skill h1 {
+  font-size: 4rem;
+  font-weight: bold;
+}
+
+.skills {
+  display: flex;
+}
+
+.skill1 {
+  width: 200px;
+  height: 80px;
+  background-color: aquamarine;
+  margin: 10px;
+}
+
+.skill2 {
+  width: 800px;
+  height: 80px;
+  background-color: aqua;
+  margin: 10px;
+}
