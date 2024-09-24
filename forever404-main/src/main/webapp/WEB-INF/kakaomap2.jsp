@@ -186,8 +186,6 @@
     	    }
     	});
 
-      const apiUrl = "https://api.openai.com/v1/chat/completions";
-      const apiKey = 'sk-TQFAcsr2lzC4jH8_QaKLoVbkU5OFJPbiynfqI6g63iT3BlbkFJoNVixKWiGfPoG7tv4us-yi7PM67W2KVmA-5LuiW6UA';
       const gptTest = document.querySelector("#gptTest");
       const gptAsk = document.querySelector("#gptAsk");
       
@@ -197,10 +195,6 @@
 	    // fetch를 사용하여 API를 호출합니다.
 		    const response = await fetch(apiUrl,{
 	        method : 'POST',
-	        headers : {
-	          'Authorization': `Bearer sk-TQFAcsr2lzC4jH8_QaKLoVbkU5OFJPbiynfqI6g63iT3BlbkFJoNVixKWiGfPoG7tv4us-yi7PM67W2KVmA-5LuiW6UA`, // API 문서에 따라 Authorization 헤더 사용
-	          'Content-Type': 'application/json'
-	        },
 	        body : JSON.stringify({
 	          "model": "gpt-4o-mini",
 	          "temperature": 0.7,
