@@ -1,0 +1,608 @@
+.carousel-container {
+  display: flex;
+  overflow: hidden;
+}
+
+.carousel-item {
+  width: 100vw;
+}
+
+.carousel-item:nth-child(2),
+.carousel-item:nth-child(3) {
+  display: none;
+}
+
+.carousel-item header {
+  background: #194569;
+  color: white;
+  height: 80px;
+  position: fixed;
+  width: 100%;
+  display: flex;
+  align-items: center;
+  z-index: 1;
+  font-family: "Dongle", sans-serif;
+}
+
+.carousel-item header button {
+  width: 60px;
+  height: 60px;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  border-radius: 50%;
+  font-size: 32px;
+  color: black;
+  background-color: white;
+  border: none;
+  cursor: pointer;
+  margin-left: 50px;
+  z-index: 2;
+  font-weight: bold;
+  font-family: "Dongle", sans-serif;
+}
+
+.carousel-item header h1 {
+  display: flex;
+  justify-content: center;
+  font-size: 5rem;
+  font-weight: bold;
+  color: white;
+  flex-grow: 1;
+  margin-left: -75px;
+  margin-top: 10px;
+}
+
+.carousel-item main {
+  padding-top: 80px;
+}
+
+.main-content .time {
+  padding-top: 10px;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  font-family: "Dongle", sans-serif;
+  font-size: 7rem;
+  color: #213a5c;
+}
+
+.detail-content {
+  display: flex;
+  justify-content: center;
+  gap: 15px;
+}
+
+#pay {
+  padding: 10px;
+  border: 2px solid rgba(25, 69, 105, 0.3);
+  font-size: 1.8rem;
+  border-radius: 20px;
+  box-shadow: 2px 2px 2px rgba(0, 0, 0, 0.1);
+  font-family: "Dongle", sans-serif;
+  width: 250px;
+  height: 200px;
+  padding: 10px;
+  overflow: scroll;
+  overflow-x: hidden;
+  position: relative;
+}
+
+#pay::-webkit-scrollbar {
+  display: none;
+}
+
+.detail-content section {
+  display: flex;
+  font-size: 1.8rem;
+  border: 2px solid rgba(25, 69, 105, 0.3);
+  border-radius: 10px;
+  box-shadow: 2px 2px 2px rgba(0, 0, 0, 0.1);
+  width: 800px;
+  height: 200px;
+}
+
+.detail-content section .img {
+  background-color: lightgray;
+  height: 150px;
+  width: 150px;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  margin: 22px;
+  font-size: 1.3rem;
+  color: white;
+}
+
+.item-content {
+  position: relative;
+  flex-grow: 1;
+  overflow: scroll;
+  overflow-x: hidden;
+  word-wrap: break-word;
+  width: 150px;
+}
+.item-content::-webkit-scrollbar {
+  display: none;
+}
+.item-content h2 {
+  font-size: 2rem;
+  font-weight: bold;
+  padding-top: 15px;
+  font-family: "Dongle", sans-serif;
+}
+
+.item-content p {
+  font-size: 2rem;
+  font-family: "Dongle", sans-serif;
+  margin-top: 15px;
+  width: 100%;
+}
+.button-content {
+  flex-direction: column-reverse;
+  display: flex;
+  width: 65px;
+  height: 100%;
+  position: relative;
+}
+
+.button-content button {
+  margin-left: 180px;
+  margin-top: 40px;
+  width: 50px;
+  height: 30px;
+  cursor: pointer;
+  position: absolute;
+  bottom: 10px;
+  right: 10px;
+  border: 2px solid rgba(25, 69, 105, 0.3);
+  color: #999;
+  border-radius: 5px;
+  background-color: transparent;
+}
+
+.button-content button:hover {
+  color: black;
+  border: 2px solid black;
+}
+
+/* 고정된 애들 */
+#plus {
+  background-color: transparent;
+  position: fixed;
+  right: 80px;
+  bottom: 30px;
+  border: none;
+  font-size: 4rem;
+  cursor: pointer;
+  outline: none;
+  color: rgba(25, 69, 105, 1);
+}
+
+#plus:hover {
+  color: #999;
+}
+
+@media screen and (max-width: 1200px) {
+  #plus {
+    display: none;
+  }
+}
+
+#btncontainer {
+  display: flex;
+  position: fixed;
+  flex-direction: column;
+  bottom: 110px;
+  right: 45px;
+}
+
+.btn1 {
+  width: 150px;
+  height: 45px;
+  cursor: pointer;
+  background-color: white;
+  color: black;
+  font-size: 1.5rem;
+  display: none;
+  border-bottom: none;
+  outline: none;
+  font-family: "Dongle", sans-serif;
+}
+
+.btn1:hover {
+  background-color: rgba(25, 69, 105, 0.3);
+  color: white;
+}
+
+#button3 {
+  border-top-left-radius: 5px;
+  border-top-right-radius: 5px;
+  border: 2px solid rgba(25, 69, 105, 0.3);
+  border-bottom: none;
+  box-shadow: 2px 2px 2px rgba(0, 0, 0, 0.1);
+}
+
+#button4 {
+  border-bottom: 2px solid black;
+  border-bottom-left-radius: 5px;
+  border-bottom-right-radius: 5px;
+  border: 2px solid rgba(25, 69, 105, 0.3);
+  box-shadow: 2px 2px 2px rgba(0, 0, 0, 0.1);
+}
+
+#button5 {
+  border-bottom: 2px solid black;
+  border-bottom-left-radius: 10px;
+  border-bottom-right-radius: 10px;
+  border: 2px solid rgba(25, 69, 105, 0.3);
+}
+
+.modal {
+  display: none;
+  position: fixed;
+  z-index: 1;
+  left: 0;
+  top: 0;
+  width: 100%;
+  height: 100%;
+  background-color: rgba(0, 0, 0, 0.4);
+}
+
+.bigmodalcontent {
+  position: relative;
+  background-color: white;
+  margin: 10% auto;
+  padding: 20px;
+  border: 1px solid #999;
+  width: 800px;
+  height: 650px;
+  border-radius: 20px;
+}
+
+.modalcontent {
+  position: absolute;
+  background-color: white;
+  width: 750px;
+  height: 500px;
+  border-radius: 20px;
+  overflow-y: scroll;
+  overflow-x: hidden;
+}
+
+.modal h2 {
+  display: flex;
+  justify-content: center;
+  font-weight: bold;
+  font-family: "Dongle", sans-serif;
+  font-size: 2.5rem;
+}
+.close {
+  color: #999;
+  float: right;
+  font-size: 28px;
+  font-weight: bold;
+  cursor: pointer;
+}
+
+.close:hover,
+.close:focus {
+  color: black;
+  text-decoration: none;
+  cursor: pointer;
+}
+#modalcontent2 {
+  position: relative;
+  background-color: white;
+  margin: 10% auto;
+  padding: 20px;
+  border: 1px solid #999;
+  width: 300px;
+  height: 23vh;
+  border-radius: 20px;
+  overflow-y: hidden;
+}
+
+#modalcontent2 input {
+  font-family: "Dongle", sans-serif;
+  font-size: 1.4rem;
+}
+
+#modalcontent2 .close {
+  font-size: 24px;
+  position: absolute;
+  top: 10px;
+  right: 10px;
+}
+
+#modalcontent2 i {
+  position: absolute;
+  top: 75px;
+  left: 35px;
+}
+
+#modalcontent2 #labelI2 {
+  top: 125px;
+}
+
+#modalcontent2 h2 {
+  font-family: "Dongle", sans-serif;
+  font-size: 1.5rem;
+}
+
+#moneyBtn {
+  position: absolute;
+  bottom: 10px;
+  left: 50%;
+  transform: translateX(-50%);
+  background-color: white;
+  color: black;
+  border: 1px solid rgba(25, 69, 105, 0.3);
+  border-radius: 5px;
+  cursor: pointer;
+  font-family: "Dongle", sans-serif;
+  font-size: 1.2rem;
+  width: 45px;
+}
+#moneyBtn:hover {
+  background-color: rgba(25, 69, 105, 1);
+  color: white;
+  border: 1px solid rgba(25, 69, 105, 1);
+}
+
+.money {
+  border: none;
+  border-bottom: 1px solid black;
+  width: 90%;
+  height: 40px;
+  padding-left: 30px;
+  padding-top: 5px;
+  margin-top: 100px;
+}
+.fileContainer {
+  display: flex;
+  flex-direction: column;
+  max-height: 300px;
+  align-items: flex-start;
+  margin: 30px;
+}
+
+#file {
+  display: none;
+}
+
+#fileForm label {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  background-color: lightgray;
+  color: white;
+  border: 2px dashed #999;
+  width: 200px;
+  height: 200px;
+  text-align: center;
+  font-weight: bold;
+  font-size: 3rem;
+  cursor: pointer;
+  margin-right: 20px;
+}
+
+#image_container {
+  top: 300px;
+  display: flex;
+  flex-wrap: wrap;
+  gap: 20px;
+  width: 100%;
+}
+
+#image_container img {
+  width: 200px;
+  height: 200px;
+  text-align: center;
+}
+
+#prevBtn {
+  position: fixed;
+  top: 50%;
+  left: 30px;
+  transform: translateY(-50%);
+  border: none;
+  background-color: transparent;
+  font-size: 4rem;
+  cursor: pointer;
+  color: #194569;
+}
+#nextBtn {
+  position: fixed;
+  top: 50%;
+  right: 30px;
+  transform: translateY(-50%);
+  border: none;
+  background-color: transparent;
+  font-size: 4rem;
+  cursor: pointer;
+  color: #194569;
+}
+
+#prevBtn:hover {
+  color: lightgray;
+}
+
+#nextBtn:hover {
+  color: lightgray;
+}
+
+#fileSubmit {
+  width: 80px;
+  height: 35px;
+  border-radius: 5px;
+  position: absolute;
+  bottom: 20px;
+  right: 50%;
+  transform: translateX(+50%);
+  cursor: pointer;
+  background-color: white;
+  color: black;
+  border: 2px solid rgba(25, 69, 105, 0.3);
+  border-radius: 5px;
+  font-family: "Dongle", sans-serif;
+  font-size: 1.3rem;
+}
+
+#fileSubmit:hover {
+  background-color: rgba(25, 69, 105, 1);
+  color: white;
+  border: 1px solid rgba(25, 69, 105, 1);
+}
+
+.dongle-bold {
+  font-family: "Dongle", sans-serif;
+  font-weight: 700;
+  font-style: normal;
+}
+
+.nanum-gothic-regular {
+  font-family: "Nanum Gothic", sans-serif;
+  font-weight: 400;
+  font-style: normal;
+}
+
+.nanum-gothic-bold {
+  font-family: "Nanum Gothic", sans-serif;
+  font-weight: 700;
+  font-style: normal;
+}
+
+.paging {
+  width: 100%;
+  height: 100px;
+  background-color: transparent;
+}
+
+#modal3 input {
+  display: flex;
+
+  margin: 10px;
+}
+
+.deleteSc {
+  position: absolute;
+  top: 5px;
+  right: 5px;
+  border: none;
+  background-color: transparent;
+  color: #999;
+  cursor: pointer;
+  font-size: 24px;
+}
+
+.deleteSc:hover {
+  color: black;
+}
+/* 금액 삭제 버튼 */
+/* From Uiverse.io by boryanakrasteva */
+.deleteM {
+  background-color: transparent;
+  position: absolute;
+  border: none;
+  right: 18px;
+  margin-top: 20px;
+}
+
+.deleteM::after {
+  content: "delete";
+  position: absolute;
+  top: -130%;
+  left: 50%;
+  transform: translateX(-50%);
+  width: fit-content;
+  height: fit-content;
+  background-color: rgb(168, 7, 7);
+  padding: 4px 8px;
+  border-radius: 5px;
+  transition: 0.2s linear;
+  transition-delay: 0.2s;
+  color: white;
+  text-transform: uppercase;
+  font-size: 12px;
+  opacity: 0;
+  visibility: hidden;
+}
+
+.icon {
+  transform: scale(1.2);
+  transition: 0.2s linear;
+}
+
+.deleteM:hover > .icon {
+  transform: scale(1.5);
+}
+
+.deleteM:hover > .icon path {
+  fill: rgb(168, 7, 7);
+}
+
+.deleteM:hover::after {
+  visibility: visible;
+  opacity: 1;
+  top: -160%;
+}
+
+#entireMoney {
+  padding-top: 5px;
+}
+
+/* From Uiverse.io by SmookyDev */
+.tooltip {
+  position: relative;
+  display: inline-block;
+  cursor: pointer;
+  font-family: "Arial", sans-serif;
+}
+
+.tooltip:hover .tooltiptext {
+  visibility: visible;
+  opacity: 1;
+}
+
+.tooltiptext {
+  font-size: 12px;
+  visibility: hidden;
+  width: 100px;
+  background-color: #333;
+  color: #fff;
+  text-align: center;
+  border-radius: 5px;
+  padding: 10px;
+  position: absolute;
+  z-index: 1;
+  top: 125%;
+  left: 50%;
+  margin-left: -40px;
+  opacity: 0;
+  transition: opacity 0.3s;
+}
+
+.tooltiptext::after {
+  content: "";
+  position: absolute;
+  top: -10px;
+  left: 50%;
+  margin-left: -10px;
+  border-width: 10px;
+  border-style: solid;
+  border-color: transparent transparent #333 transparent;
+}
+
+.tooltip .icon {
+  margin-left: 10px;
+  font-size: 18px;
+  display: inline-block;
+  width: 20px;
+  height: 20px;
+  background-color: #4caf50;
+  color: #fff;
+  border-radius: 50%;
+  text-align: center;
+  line-height: 20px;
+}

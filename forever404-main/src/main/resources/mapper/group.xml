@@ -1,0 +1,271 @@
+
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="mapper.GroupMapper">
+
+	<!--  그룹 생성 -->
+	<insert id="addGroup" parameterType="BigGroup">
+		INSERT INTO big_group(group_name) VALUES(#{groupName})
+	</insert>
+	
+	<!-- 그룹명으로 그룹 참가 -->
+	<insert id="addSmGroup" parameterType="SmallGroup">
+		INSERT INTO small_group(id, bg_group_code) VALUES(#{user.id}, #{bigGroup.bgGroupCode})
+	</insert>
+	
+	
+	<!-- big_group resultMap -->
+	<resultMap type="BigGroup" id="bgMap">
+		<id column="bg_group_code" property="bgGroupCode"/>
+		<result column="group_name" property="groupName"/>
+	</resultMap>
+	
+	<!-- small_group & user & big_group 테이블 조인용 result-map -->
+	<resultMap type="SmallGroup" id="groupMap">
+	<id column="sm_group_code" property="smGroupCode"></id>
+	<result column="money_per_user" property="moneyPerUser"/>
+	<result column="role_code" property="roleCode"/>
+	<association property="bigGroup" javaType="BigGroup">
+		<id column="bg_group_code" property="bgGroupCode"/>
+		<result column="group_name" property="groupName"/>
+	</association>
+	<collection property="user" ofType="User">
+	<id column="id" property="id"></id>
+	<result column="password" property="password"></result>
+	<result column="phone" property="phone"></result>
+	<result column="name" property="name"></result>
+	<result column="email" property="email"></result>
+	<result column="birth" property="birth"></result>
+	</collection>
+	</resultMap>
+	
+	<!-- 그룹이름 중복 찾기용 select -->
+	<select id="userGroup" resultMap="bgMap">
+	SELECT *
+	FROM big_group
+	</select>
+	
+	<!-- 아이디를 가지고 그룹을 가지고 있는 회원 찾기용 select -->
+	<select id="selectSmallGroup" resultMap="groupMap" parameterType="String">
+	SELECT * FROM small_group
+	WHERE id = #{id}
+	</select>
+	
+	<!-- 같은 그룹을 찾는 여러 회원 찾기용 select -->
+	<select id="selectSmallGroup2" resultMap="groupMap" parameterType="int">
+	SELECT * FROM small_group
+	WHERE bg_group_code = ${bgGroupCode}
+	</select>
+	
+	<!-- 그룹 이름으로 프라이머리키 찾는 select -->
+	<select id="searchBgCode" resultMap="bgMap" parameterType="String">
+	SELECT *
+	FROM big_group
+	WHERE group_name=#{groupName}
+	</select>
+		
+	<!-- mCode로 money 테이블 삭제 -->
+	<delete id="deleteM" parameterType="int">
+	DELETE FROM money
+	WHERE m_code = #{mCode}
+	</delete>
+	
+	<!-- ssCode로 money 테이블 삭제 -->
+	<delete id="deleteGroup1" parameterType="int">
+	DELETE FROM money
+	WHERE ss_code = #{ssCode}
+	</delete>
+	
+	<!-- bsCode로 세부일정 삭제 -->
+	<delete id="deleteGroup2" parameterType="int">
+	DELETE FROM small_schedule
+	WHERE bs_code = #{bsCode}
+	</delete>
+	
+	<!-- 그룹코드로 전체일정 삭제 -->
+	<delete id="deleteGroup3" parameterType="int">
+	DELETE FROM big_schedule
+	WHERE bg_group_code = #{bgGroupCode}
+	</delete>
+	
+	<!-- 그룹코드로 참가한 사람들 모두 삭제 -->
+	<delete id="deleteGroup4" parameterType="int">
+	DELETE FROM small_group
+	WHERE bg_group_code = #{bgGroupCode}
+	</delete>
+	
+	<!-- 그룹코드로 그룹자체 삭제 -->
+	<delete id="deleteGroup5" parameterType="int">
+	DELETE FROM big_group
+	WHERE bg_group_code = #{bgGroupCode}
+	</delete>
+	
+	<!-- ssCode로 세부일정 삭제 -->
+	<delete id="deleteSc" parameterType="int">
+	DELETE FROM small_schedule
+	WHERE ss_code = #{ssCode}
+	</delete>
+	
+	<!-- bsCode로 전체일정 삭제 -->
+	<delete id="deleteBs" parameterType="int">
+	DELETE FROM big_schedule
+	WHERE bs_code = #{bsCode}
+	</delete>
+	
+	<select id="allInfoGroup" resultMap="groupMap" parameterType="String">
+	select * 
+	from user
+	left join small_group using(id)
+	left join big_group using(bg_group_code)
+	<where>
+	id=#{id}
+	</where>
+	</select>
+	
+	<!-- BigGroupSchedule -->
+	<resultMap type="BigSchedule" id="BscheduleAddMap">
+		<id column="bs_code" property="bsCode"></id>
+		<result column="start_date" property="startDate"/>
+		<result column="end_date" property="endDate"/>
+		<result column="title" property="title"/>
+		<result column="entire_money" property="entireMoney"/>
+		<result column="schedule_color" property="scheduleColor"/>
+		<association property="bigGroup" javaType="BigGroup">
+		<id column="bg_group_code" property="bgGroupCode"/>
+		<result column="group_name" property="groupName"/>
+	</association>
+	<collection property="user" ofType="User">
+	<id column="id" property="id"></id>
+	<result column="password" property="password"></result>
+	<result column="phone" property="phone"></result>
+	<result column="name" property="name"></result>
+	<result column="email" property="email"></result>
+	<result column="birth" property="birth"></result>
+	</collection>
+	</resultMap>
+
+	<!-- 여기에 select문 필요 (나중에) -->
+	<select id="selectBg" parameterType="int" resultMap="BscheduleAddMap">
+		SELECT * FROM big_schedule
+		WHERE bg_group_code = #{bigGroup.bgGroupCode}
+	</select>
+	
+	<select id="searchBsCode" resultMap="BscheduleAddMap" parameterType="int">
+	SELECT * FROM big_schedule
+	LEFT JOIN big_group USING (bg_group_code)
+	WHERE bg_group_code = #{bgGroupCode}
+	</select>
+	<insert id="scheduleAdd" parameterType="BigSchedule">
+		INSERT INTO big_schedule(bg_group_code, id, start_date, end_date, title, entire_money, schedule_color) VALUES (#{bigGroup.bgGroupCode},#{user.id},#{startDate},#{endDate},#{title},#{entireMoney},#{scheduleColor})
+	</insert>
+	
+	<!-- 세부 일정 만들기(small schedule) -->
+	<resultMap type="SmallSchedule" id="scMap">
+		<id column="ss_code" property="ssCode"></id>
+		<result column="memo" property="memo"/>
+		<result column="is_reservation" property="isReservation"/>
+		<result column="left_money" property="leftMoney"/>
+		<result column="cur_date" property="curDate"/>
+		<result column="cur_time" property="curTime"/>
+		<result column="service_name" property="serviceName"/>
+		<result column="service_jibun" property="serviceJibun"/>
+		<result column="service_lat" property="serviceLat"/>
+		<result column="service_lng" property="serviceLng"/>
+		<result column="service_phone" property="servicePhone"/>
+		<result column="service_img" property="serviceImg"/>
+		<association property="bigSchedule" javaType="BigSchedule">
+		<id column="bs_code" property="bsCode"></id>
+		<result column="start_date" property="startDate"/>
+		<result column="end_date" property="endDate"/>
+		<result column="title" property="title"/>
+		<result column="entire_money" property="entireMoney"/>
+		<result column="schedule_color" property="scheduleColor"/>
+		</association>
+	</resultMap>
+	<insert id="scheduleAdd2" parameterType="SmallSchedule" useGeneratedKeys="true" keyProperty="ssCode" keyColumn="ss_code">
+		INSERT INTO small_schedule(memo, is_reservation, cur_date, cur_time, bs_code, service_name, service_jibun, service_lat, service_lng, service_phone, service_img)
+		VALUES (#{memo}, #{isReservation}, #{curDate}, #{curTime}, #{bigSchedule.bsCode}, #{serviceName}, #{serviceJibun}, #{serviceLat},#{serviceLng},#{servicePhone},#{serviceImg})
+	</insert>
+	
+	<select id="selectSc" resultMap="scMap" parameterType="BigSchedule">
+		SELELCT * FROM small_schedule
+		WHERE bs_code = #{bigSchedule.bsCode}
+	</select>
+	
+	<select id="selectOneSc" parameterType="int" resultMap="scMap">
+		SELECT * FROM small_schedule
+		LEFT JOIN big_schedule USING (bs_code)
+		WHERE bs_code = #{bsCode}
+		ORDER BY cur_time
+	</select>
+	
+	<select id="selectOneBs" parameterType="int" resultMap="BscheduleAddMap">
+		SELECT * FROM big_schedule
+		WHERE bs_code = #{bsCode}
+	</select>
+	
+	<select id="getDateRange" parameterType="int" resultType="map">
+    SELECT startDate AS stdDate, endDate AS endDate
+    FROM Schedule
+    WHERE bsCode = #{bsCode}
+</select>
+	
+	<select id="getDatesList" parameterType="map" resultType="map">
+		WITH RECURSIVE T AS (
+			SELECT #{stdDate} AS date
+			UNION ALL
+			SELECT date + INTERVAL 1 DAY
+			  FROM T WHERE date <![CDATA[ < ]]> #{endDate}
+			)
+			SELECT * FROM T;
+	</select>
+	
+	<!-- 돈 관련 테이블(money) -->
+	<resultMap type="Money" id="moneyMap">
+		<id column="m_code" property="mCode"/>
+		<result column="use_money" property="useMoney"/>
+		<result column="buying_list" property="buyingList"/>
+		<association property="smallSchedule" javaType="SmallSchedule">
+		<id column="ss_code" property="ssCode"></id>
+		</association>
+	</resultMap>
+	
+	<select id="selectMoney" parameterType="int" resultMap="moneyMap">
+		SELECT * FROM money
+		WHERE ss_code = #{ssCode}
+	</select>
+	
+	<insert id="insertMoney" parameterType="Money">
+		INSERT INTO money(use_money, buying_list, ss_code) VALUES (#{useMoney}, #{buyingList}, #{smallSchedule.ssCode})
+	</insert>
+	
+	<resultMap type="Photo" id="photoMap">
+	<id column="photo_code" property="photoCode"></id>
+	<result column="photo_url" property="photoUrl"/>
+	<association property="bigSchedule" javaType="Bigschedule">
+	<id column="bs_code" property="bsCode"/>
+	</association>
+	</resultMap>
+	<!-- photo 테이블에 이미지 추가 -->
+	<insert id="imgLoad" parameterType="Photo">
+		INSERT INTO photo(photo_url, bs_code) VALUES(#{photoUrl}, #{bigSchedule.bsCode})
+	</insert>
+	
+	<select id="selectMyImg" resultMap="photoMap" parameterType="int">
+	SELECT * FROM photo WHERE bs_code=#{bsCode}
+	</select>
+	
+	<!-- 이미지 삭제 -->
+	<delete id="deleteImg" parameterType="int">
+		DELETE FROM photo
+		WHERE photo_code = #{photoCode}
+	</delete>
+	<delete id="deleteAllImg" parameterType="int">
+	DELETE FROM photo
+		WHERE bs_code = #{bsCode}
+	</delete>
+	
+	<!-- 로딩 텍스트 가져오기 -->
+	<select id="tip" resultType="Tip">
+	SELECT * FROM tip
+	</select>
+</mapper>
