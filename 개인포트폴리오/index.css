@@ -1,5 +1,5 @@
 header {
-  background-color: skyblue;
+  background-color: lavender;
   height: 80px;
   display: flex;
   justify-content: space-around;
@@ -20,7 +20,7 @@ header a {
 
 section {
   background-color: lavender;
-  height: 50vw;
+  height: 1000px;
   display: flex;
   justify-content: center;
   align-items: center;
@@ -45,7 +45,6 @@ section {
 #home a {
   font-size: 3rem;
   margin-bottom: 120px;
-  border: 2px solid black;
   border-radius: 20px;
   cursor: pointer;
 }
@@ -66,11 +65,12 @@ section {
 
 #sideBar a {
   height: 100px;
-  margin-top: 50%;
   border-bottom: 2px solid black;
   font-weight: bold;
   width: 100%;
-  padding-left: 25px;
+  display: flex;
+  justify-content: center;
+  align-items: center;
 }
 
 #sideBar #skillA {
@@ -83,8 +83,7 @@ section {
 }
 
 #profile-container {
-  background-color: yellowgreen;
-  width: 900px;
+  width: 1200px;
   height: 300px;
   padding: 50px;
   box-sizing: border-box;
@@ -101,6 +100,20 @@ section {
   justify-content: center;
   flex-direction: column;
   align-items: center;
+}
+
+.profileItem h2 {
+  font-size: 2rem;
+  font-weight: bold;
+}
+
+.profileItem h2 i {
+  padding-right: 10px;
+}
+
+.profileItem h3 {
+  font-size: 1.5rem;
+  margin-top: 10px;
 }
 
 #introduce-container {
@@ -129,13 +142,19 @@ section {
   height: 200px;
   background-color: aquamarine;
   margin: 10px;
+  display: flex;
+  justify-content: center;
+  align-items: center;
 }
 
 .Intro2 {
-  width: 800px;
-  height: 200px;
-  background-color: aqua;
+  width: 1300px;
   margin: 10px;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  font-size: 1.2rem;
+  line-height: 30px;
 }
 
 #skill h1 {
@@ -152,6 +171,11 @@ section {
   height: 80px;
   background-color: aquamarine;
   margin: 10px;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  font-weight: bold;
+  font-size: 1.5rem;
 }
 
 .skill2 {
@@ -159,4 +183,9 @@ section {
   height: 80px;
   background-color: aqua;
   margin: 10px;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  flex-direction: column;
+  font-size: 1.2rem;
 }
