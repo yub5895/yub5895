@@ -22,10 +22,21 @@
       </div>
     </header>
     <main>
+      <div id="modal-content">
+        <div id="modal-container">
+          <div id="modal-header"><p>포트폴리오에 오신 것을<br> 환영합니다 ! <i id="close" class="fa-solid fa-xmark"></i></p></div>
+          <div id="modal-main"><img src="../resources/family1.jpg" alt=""></div>
+          <div id="modal-footer">도전하고, 학습하고, 소통하는<br> 신입 개발자 배영운입니다.</div>
+        </div>
+      </div>
       <section id="home">
-        <h1 id="h1">Stay hungry, Stay foolish</h1>
+        <h1 id="h1"></h1>
         <h2>열망하고 도전하는 개발자, 배영운</h2>
-        <a>안녕하세요 hi</a>
+        <div id="moving-text"><div id="texts">
+          <span>HTML5 </span><span>CSS3 </span><span>
+            JavaScript </span><span>jQuery </span><span>Ajax </span>
+          <span>React </span><span>JAVA </span><span>JSP&Servlet </span><span>MyBatis </span><span>Spring Framework</span>
+        </div>
       </section>
       <section id="profile" class="section1">
         <div class="fade-wrap">
@@ -110,7 +121,7 @@
 
       <section id="skill" class="section1">
         <div class="fade-wrap">
-        <h1>Skills</h1>
+        <h1>Skill</h1>
         <div id="skill-container" class="skills">
           <div class="skill1">Development</div>
           <div class="skill2">
@@ -119,7 +130,7 @@
           </div>
         </div>
         <div id="framework" class="skills">
-          <div class="skill1">FrameWork / Library</div>
+          <div class="skill1">FrameWork</div>
           <div class="skill2">Spring Framework/JSTL</div>
         </div>
         <div id="DB" class="skills">
@@ -157,7 +168,7 @@
       });
 
       header.addEventListener("mouseout", () => {
-        header.style.backgroundColor = "lavender";
+        header.style.background = "linear-gradient(120deg, #ffecd2 0%, #fcb69f 100%)";
       });
 
       window.addEventListener("scroll", () => {
@@ -196,7 +207,44 @@
         observer.observe(element);
       });
 
-      const text = document.
+
+      const modal = document.getElementById("modal-content");
+      
+      document.addEventListener("DOMContentLoaded", () => {
+        modal.style.display = "block";
+      })
+
+      document.addEventListener("keydown", (e) => {
+        if(e.key === "Escape" && modal.style.display === "block") {
+          modal.style.display = "none";
+          typing();
+        }
+      })
+
+      const close = document.getElementById("close");
+      close.addEventListener("click", (e) => {
+        if(modal.style.display === "block") {
+          modal.style.display = "none";
+          typing();
+        }
+      })
+
+      const text = document.getElementById("h1");
+      
+      const content = "Stay\u00A0hungry,\u00A0Stay\u00A0foolish";
+      let count = 0;
+
+      
+      function typing() {
+        text.innerText += content[count++];
+        if(count > content.length) {
+          clearInterval(typingInterval);
+          text.innerText = "Stay\u00A0hungry,\u00A0Stay\u00A0foolish";
+
+    }
+      }
+   
+      let typingInterval = setInterval(typing, 150);
     </script>
   </body>
 </html>
