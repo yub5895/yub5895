@@ -12,52 +12,61 @@
     />
   </head>
   <body>
-    <header>
+    <header id="header">
       <h1>배영운 포트폴리오</h1>
-      <div>
-        <a>Profile</a>
-        <a>Project</a>
-        <a>Introduce</a>
-        <a>Skill</a>
+      <div id="link">
+        <a href="#profile" class="profile">Profile</a>
+        <a href="#project">Project</a>
+        <a href="#introduce">Introduce</a>
+        <a href="#skill">Skill</a>
       </div>
     </header>
     <main>
       <section id="home">
-        <h1>Stay hungry, Stay foolish</h1>
+        <h1 id="h1">Stay hungry, Stay foolish</h1>
         <h2>열망하고 도전하는 개발자, 배영운</h2>
         <a>안녕하세요 hi</a>
       </section>
-      <section id="profile">
-        <h1>Profile</h1>
-        <div id="profile-container">
-          <div class="profileItem">
-            <h2><i class="fa-solid fa-user"></i>이름</h2>
-            <h3>배영운</h3>
-          </div>
-          <div class="profileItem">
-            <h2><i class="fa-solid fa-cake-candles"></i>생년월일</h2>
-            <h3>1997.03.22</h3>
-          </div>
-          <div class="profileItem">
-            <h2><i class="fa-solid fa-house"></i>주소지</h2>
-            <h3>경기도 시흥시 은행동</h3>
-          </div>
-          <div class="profileItem">
-            <h2><i class="fa-solid fa-phone"></i>연락처</h2>
-            <h3>010-5339-8965</h3>
-          </div>
-          <div class="profileItem">
-            <h2><i class="fa-solid fa-envelope"></i>이메일</h2>
-            <h3>yub589572@naver.com</h3>
-          </div>
-          <div class="profileItem">
-            <h2><i class="fa-solid fa-pencil"></i>경력</h2>
-            <h3>KH정보교육원 수료</h3>
+      <section id="profile" class="section1">
+        <div class="fade-wrap">
+          <h1>Profile</h1>
+          <div id="profile-container">
+            <div class="profileItem">
+              <h2><i class="fa-solid fa-user"></i>이름</h2>
+              <h3>배영운</h3>
+            </div>
+            <div class="profileItem">
+              <h2><i class="fa-solid fa-cake-candles"></i>생년월일</h2>
+              <h3>1997.03.22</h3>
+            </div>
+            <div class="profileItem">
+              <h2><i class="fa-solid fa-house"></i>주소지</h2>
+              <h3>경기도 시흥시 은행동</h3>
+            </div>
+            <div class="profileItem">
+              <h2><i class="fa-solid fa-phone"></i>연락처</h2>
+              <h3>010-5339-8965</h3>
+            </div>
+            <div class="profileItem">
+              <h2><i class="fa-solid fa-envelope"></i>이메일</h2>
+              <h3>yub589572@naver.com</h3>
+            </div>
+            <div class="profileItem">
+              <h2><i class="fa-solid fa-pencil"></i>경력</h2>
+              <h3>KH정보교육원 수료</h3>
+            </div>
           </div>
         </div>
       </section>
-      <section>여기는 프로젝트가 소개될 페이지입니다.</section>
-      <section id="introduce">
+
+      <section id="project" class="section1">
+        <div class="fade-wrap">
+        여기는 프로젝트가 소개될 페이지입니다.
+      </section>
+    </div>
+
+      <section id="introduce" class="section1">
+        <div class="fade-wrap">
         <h1>Introduce</h1>
         <div id="introduce-container">
           <div id="merit">
@@ -96,9 +105,11 @@
             </div>
           </div>
         </div>
+      </div>
       </section>
 
-      <section id="skill">
+      <section id="skill" class="section1">
+        <div class="fade-wrap">
         <h1>Skills</h1>
         <div id="skill-container" class="skills">
           <div class="skill1">Development</div>
@@ -123,14 +134,69 @@
           <div class="skill1">Collaboration</div>
           <div class="skill2">Github</div>
         </div>
+      </div>
       </section>
     </main>
     <div id="sideBar">
-      <a>Main</a>
-      <a>Profile</a>
-      <a>Project</a>
-      <a>Introduce</a>
-      <a id="skillA">Skill</a>
+      <a href="#header">Main</a>
+      <a href="#profile">Profile</a>
+      <a href="#project">Project</a>
+      <a href="#introduce">Introduce</a>
+      <a href="#skill" id="skillA">Skill</a>
     </div>
+
+    <script>
+      const header = document.getElementById("header");
+      const link = document.getElementById("link");
+      const profile = document.getElementById("profile");
+      const sidebar = document.getElementById("sideBar");
+      const project = document.getElementById("project");
+
+      header.addEventListener("mouseover", () => {
+        header.style.backgroundColor = "white";
+      });
+
+      header.addEventListener("mouseout", () => {
+        header.style.backgroundColor = "lavender";
+      });
+
+      window.addEventListener("scroll", () => {
+        const profileHeight = profile.getBoundingClientRect().top;
+        if (profileHeight <= window.innerHeight && profileHeight) {
+          sidebar.style.display = "block";
+        } else {
+          sidebar.style.display = "none";
+        }
+      });
+
+      window.addEventListener("scroll", () => {
+        const projectHeight = project.getBoundingClientRect().top;
+        if (projectHeight <= window.innerHeight) {
+          sidebar.style.display = "block";
+        } else {
+          sidebar.style.display = "none";
+        }
+      });
+
+      const observer = new IntersectionObserver(
+        (entries, observer) => {
+          entries.forEach((entry) => {
+            if (entry.isIntersecting) {
+              entry.target.classList.add("fade-in");
+            } else {
+              entry.target.classList.remove("fade-in");
+            }
+          });
+        },
+        { threshold: 0.5 }
+      );
+
+      const section = document.querySelectorAll(".fade-wrap");
+      section.forEach((element) => {
+        observer.observe(element);
+      });
+
+      const text = document.
+    </script>
   </body>
 </html>

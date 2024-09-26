@@ -1,9 +1,15 @@
+html {
+  scroll-behavior: smooth;
+}
+
 header {
   background-color: lavender;
   height: 80px;
   display: flex;
   justify-content: space-around;
   align-items: center;
+  transition: background-color 0.5s ease, transform 0.8s ease;
+  cursor: pointer;
 }
 
 header h1 {
@@ -25,6 +31,28 @@ section {
   justify-content: center;
   align-items: center;
   flex-direction: column;
+}
+
+.section1 {
+  background-color: lavender;
+  height: 1000px;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  flex-direction: column;
+}
+
+.section1 .fade-wrap {
+  opacity: 0;
+  transition: 2s;
+  position: relative;
+  left: -50px;
+}
+
+.section1 .fade-wrap.fade-in {
+  opacity: 1;
+  transition: 2s;
+  left: 0px;
 }
 
 #home {
@@ -61,6 +89,7 @@ section {
   flex-direction: column;
   border: 2px solid black;
   cursor: pointer;
+  display: none;
 }
 
 #sideBar a {
