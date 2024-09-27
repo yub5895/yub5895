@@ -10,23 +10,28 @@
       rel="stylesheet"
       href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.6.0/css/all.min.css"
     />
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Permanent+Marker&display=swap" rel="stylesheet">
   </head>
   <body>
-    <header id="header">
-      <h1>배영운 포트폴리오</h1>
-      <div id="link">
-        <a href="#profile" class="profile">Profile</a>
-        <a href="#project">Project</a>
-        <a href="#introduce">Introduce</a>
-        <a href="#skill">Skill</a>
-      </div>
-    </header>
+
     <main>
+      <header id="header">
+        <h1>배영운 포트폴리오</h1>
+        <div id="link">
+          <a href="#profile" class="profile">Profile</a>
+          <a href="#project">Project</a>
+          <a href="#introduce">Introduce</a>
+          <a href="#skill">Skill</a>
+        </div>
+      </header>
       <div id="modal-content">
         <div id="modal-container">
-          <div id="modal-header"><p>포트폴리오에 오신 것을<br> 환영합니다 ! <i id="close" class="fa-solid fa-xmark"></i></p></div>
-          <div id="modal-main"><img src="../resources/family1.jpg" alt=""></div>
-          <div id="modal-footer">도전하고, 학습하고, 소통하는<br> 신입 개발자 배영운입니다.</div>
+          <div id="modal-header"><p>포트폴리오에 오신 것을<br> 환영합니다 !<hr> <i id="close" class="fa-solid fa-xmark"></i></p></div>
+          <div id="modal-main"><img src="../resources/내사진.jpg" alt=""></div>
+
+          <div id="modal-footer">          <hr>도전하고, 학습하고, 소통하는<br> 신입 개발자 배영운입니다.</div>
         </div>
       </div>
       <section id="home">
@@ -42,7 +47,7 @@
         <div class="fade-wrap">
           <h1>Profile</h1>
           <div id="profile-container">
-            <div class="profileItem">
+            <div id="item1" class="profileItem">
               <h2><i class="fa-solid fa-user"></i>이름</h2>
               <h3>배영운</h3>
             </div>
@@ -72,9 +77,18 @@
 
       <section id="project" class="section1">
         <div class="fade-wrap">
-        여기는 프로젝트가 소개될 페이지입니다.
-      </section>
+        <h1>Project</h1>
+        <div id="img-container">
+        <div class="image"><img class="img" src="../resources/index.gif" alt=""></div>
+        <div class="image"><img class="img"  src="../resources/index12.gif" alt=""></div>
+        <div class="image"><img class="img" src="../resources/developer12.gif" alt=""></div>
+        <div class="image"><img class="img" src="../resources/calendar12.gif" alt=""></div>
+        <div class="image"><img class="img" src="../resources/detail.gif" alt=""></div>
+        <div class="image"><img class="img" src="../resources/kakaomap.gif" alt=""></div>
+      </div>
     </div>
+      </section>
+ 
 
       <section id="introduce" class="section1">
         <div class="fade-wrap">
@@ -162,23 +176,20 @@
       const profile = document.getElementById("profile");
       const sidebar = document.getElementById("sideBar");
       const project = document.getElementById("project");
+      const img = document.querySelectorAll(".img");
+      const originalBackgroundColor = "linear-gradient(120deg, #ffecd2 0%, #fcb69f 100%)";
 
       header.addEventListener("mouseover", () => {
-        header.style.backgroundColor = "white";
+        header.style.background = "white";
       });
 
       header.addEventListener("mouseout", () => {
-        header.style.background = "linear-gradient(120deg, #ffecd2 0%, #fcb69f 100%)";
+        header.style.background = "linear-gradient(120deg, #ffecd2 0%, #FED6BD 100%)"
       });
 
-      window.addEventListener("scroll", () => {
-        const profileHeight = profile.getBoundingClientRect().top;
-        if (profileHeight <= window.innerHeight && profileHeight) {
-          sidebar.style.display = "block";
-        } else {
-          sidebar.style.display = "none";
-        }
-      });
+
+
+
 
       window.addEventListener("scroll", () => {
         const projectHeight = project.getBoundingClientRect().top;
@@ -187,6 +198,7 @@
         } else {
           sidebar.style.display = "none";
         }
+
       });
 
       const observer = new IntersectionObserver(
@@ -212,12 +224,14 @@
       
       document.addEventListener("DOMContentLoaded", () => {
         modal.style.display = "block";
+        noneScroll();
       })
 
       document.addEventListener("keydown", (e) => {
         if(e.key === "Escape" && modal.style.display === "block") {
           modal.style.display = "none";
-          typing();
+          startTyping();
+          onScroll();
         }
       })
 
@@ -225,7 +239,8 @@
       close.addEventListener("click", (e) => {
         if(modal.style.display === "block") {
           modal.style.display = "none";
-          typing();
+          startTyping();
+          onScroll();
         }
       })
 
@@ -233,18 +248,33 @@
       
       const content = "Stay\u00A0hungry,\u00A0Stay\u00A0foolish";
       let count = 0;
+      let typingInterval;
 
       
       function typing() {
-        text.innerText += content[count++];
-        if(count > content.length) {
-          clearInterval(typingInterval);
-          text.innerText = "Stay\u00A0hungry,\u00A0Stay\u00A0foolish";
 
+        if(count < content.length) {
+          text.innerText += content[count++];
+
+    } else{
+      clearInterval(typingInterval)
     }
       }
    
-      let typingInterval = setInterval(typing, 150);
+      function startTyping() {
+        typingInterval = setInterval(typing, 150);
+      }
+
+      function noneScroll() {
+  document.body.style.overflow = "hidden";
+}
+function onScroll() {
+  document.body.style.overflow = "";
+}
+
+history.scrollRestoration = "manual";
     </script>
+
+    
   </body>
 </html>

@@ -36,7 +36,7 @@ header a {
 #modal-container {
   position: absolute;
   width: 350px;
-  height: 350px;
+  height: 400px;
   top: 30%;
   right: 30%;
   transform: translate(-50%);
@@ -46,15 +46,22 @@ header a {
   box-shadow: 4px 4px 4px rgba(0, 0, 0, 0.2);
 }
 
+hr {
+  border: none;
+  border-bottom: 0.5px solid rgba(255, 236, 210, 1);
+}
+
 #modal-header {
   width: 100%;
-  height: 50px;
+  height: 60px;
   text-align: center;
   font-weight: bold;
   font-size: 1.3rem;
-  margin-top: 15px;
   padding: 10px;
   line-height: 25px;
+  background: linear-gradient(120deg, #f6d365 20%, #fda085 100%);
+  color: transparent;
+  -webkit-background-clip: text;
 }
 
 #modal-header i {
@@ -66,11 +73,12 @@ header a {
 
 #modal-main img {
   width: 150px;
-  height: 150px;
+  height: 200px;
   display: flex;
   margin: auto;
-  border-radius: 50%;
-  margin-top: 30px;
+  border-radius: 20px;
+  margin-top: 40px;
+  object-fit: contain;
 }
 
 #modal-footer {
@@ -79,9 +87,11 @@ header a {
   font-size: 1.3rem;
   font-weight: bold;
   padding: 15px;
-  margin-top: 20px;
   line-height: 25px;
   text-align: center;
+  background: linear-gradient(120deg, #f6d365 20%, #fda085 100%);
+  color: transparent;
+  -webkit-background-clip: text;
 }
 
 section {
@@ -100,17 +110,56 @@ section {
   flex-direction: column;
 }
 
-.section1 .fade-wrap {
+#profile .fade-wrap {
   opacity: 0;
-  transition: 2s;
+  transition: 3s;
   position: relative;
-  left: -50px;
+  left: -150px;
 }
 
-.section1 .fade-wrap.fade-in {
+#profile .fade-wrap.fade-in {
+  opacity: 1;
+  transition: 3s;
+  left: 0px;
+}
+
+#project .fade-wrap {
+  opacity: 0;
+  transition: 3s;
+  position: relative;
+  right: -150px;
+}
+
+#project .fade-wrap.fade-in {
   opacity: 1;
   transition: 2s;
+  right: 0px;
+}
+
+#introduce .fade-wrap {
+  opacity: 0;
+  transition: 3s;
+  position: relative;
+  left: -150px;
+}
+
+#introduce .fade-wrap.fade-in {
+  opacity: 1;
+  transition: 3s;
   left: 0px;
+}
+
+#skill .fade-wrap {
+  opacity: 0;
+  transition: 3s;
+  position: relative;
+  right: -150px;
+}
+
+#skill .fade-wrap.fade-in {
+  opacity: 1;
+  transition: 2s;
+  right: 0px;
 }
 
 #home {
@@ -118,6 +167,7 @@ section {
 }
 
 #home h1 {
+  font-family: "Permanent Marker", cursive;
   font-size: 4rem;
   font-weight: bold;
   margin-bottom: 120px;
@@ -125,6 +175,9 @@ section {
   animation-name: cursor;
   animation-duration: 0.3s;
   animation-iteration-count: infinite;
+  background: linear-gradient(120deg, #f6d365 20%, #fda085 100%);
+  color: transparent;
+  -webkit-background-clip: text;
 }
 
 @keyframes cursor {
@@ -140,14 +193,23 @@ section {
 }
 
 #home h2 {
-  font-size: 3rem;
+  font-size: 2rem;
   margin-bottom: 80px;
+  font-family: "Permanent Marker", cursive;
+  font-weight: bold;
+  background: linear-gradient(45deg, #f6d365 20%, #fda085 100%);
+  color: transparent;
+  -webkit-background-clip: text;
 }
 
 #home span {
   font-size: 2rem;
   border-radius: 20px;
   cursor: pointer;
+  font-family: "Permanent Marker", cursive;
+  background: linear-gradient(45deg, #f6d365 0%, #fda085 100%);
+  color: transparent;
+  -webkit-background-clip: text;
 }
 
 #moving-text {
@@ -177,29 +239,42 @@ section {
   position: fixed;
   width: 100px;
   height: 500px;
-  background-color: white;
+  background: linear-gradient(120deg, #ffecd2 0%, #fcb69f 100%);
   bottom: 50%;
   transform: translateY(+50%);
   right: 15px;
   display: flex;
   flex-direction: column;
-  border: 2px solid black;
+  border: 1px solid black;
   cursor: pointer;
   display: none;
+  transition: transform 0.5s ease;
+  box-shadow: 3px 3px 3px rgba(0, 0, 0, 0.2);
 }
 
 #sideBar a {
   height: 100px;
-  border-bottom: 2px solid black;
+  border-bottom: 1px solid black;
   font-weight: bold;
   width: 100%;
   display: flex;
   justify-content: center;
   align-items: center;
+  color: white;
 }
 
 #sideBar #skillA {
   border-bottom: none;
+}
+
+#sideBar #skillA:hover {
+  border-bottom: 1px solid black;
+}
+
+#sideBar a:hover {
+  background: linear-gradient(120deg, #ffecd2 0%, #fcb69f 100%);
+  border-bottom: 1px solid black;
+  color: black;
 }
 
 #profile h1 {
@@ -243,6 +318,27 @@ section {
   margin-top: 10px;
 }
 
+#project h1 {
+  font-size: 4rem;
+  font-weight: bold;
+  text-align: center;
+  margin-bottom: 100px;
+}
+
+#img-container {
+  width: 960px;
+  height: 600px;
+  display: flex;
+  justify-content: center;
+  flex-wrap: wrap;
+  object-fit: cover;
+}
+#img-container img {
+  width: 300px;
+  height: 300px;
+  margin: 10px;
+  display: flex;
+}
 #introduce-container {
   margin: 10px;
 }
@@ -326,4 +422,22 @@ section {
 
 body {
   background: linear-gradient(120deg, #ffecd2 0%, #fcb69f 100%);
+}
+
+.permanent-marker-regular {
+  font-family: "Permanent Marker", cursive;
+  font-weight: 400;
+  font-style: normal;
+}
+
+.nanum-pen-script-regular {
+  font-family: "Nanum Pen Script", cursive;
+  font-weight: 400;
+  font-style: normal;
+}
+
+.nanum-gothic-regular {
+  font-family: "Nanum Gothic", sans-serif;
+  font-weight: 400;
+  font-style: normal;
 }
