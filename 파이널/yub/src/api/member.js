@@ -5,5 +5,5 @@ const instance = axios.create({
 });
 
 export const mvoing = async (data) => {
-  return await instance.post("moving");
+  return await instance.post("Board");
 };
