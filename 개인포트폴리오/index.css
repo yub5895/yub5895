@@ -14,6 +14,9 @@ header {
 header h1 {
   font-size: 1.2rem;
   font-weight: bold;
+  background-image: linear-gradient(-20deg, #2b5876 0%, #4e4376 100%);
+  color: transparent;
+  -webkit-background-clip: text;
 }
 
 header a {
@@ -21,6 +24,9 @@ header a {
   font-weight: bold;
   margin: 10px;
   cursor: pointer;
+  background-image: linear-gradient(-20deg, #2b5876 0%, #4e4376 100%);
+  color: transparent;
+  -webkit-background-clip: text;
 }
 
 #modal-content {
@@ -69,6 +75,7 @@ hr {
   position: absolute;
   top: 15px;
   right: 15px;
+  color: black;
 }
 
 #modal-main img {
@@ -108,6 +115,18 @@ section {
   justify-content: center;
   align-items: center;
   flex-direction: column;
+}
+
+#profile {
+  height: 800px;
+}
+
+#project {
+  height: 1200px;
+}
+
+#introduce {
+  height: 800px;
 }
 
 #profile .fade-wrap {
@@ -170,14 +189,15 @@ section {
   font-family: "Permanent Marker", cursive;
   font-size: 4rem;
   font-weight: bold;
-  margin-bottom: 120px;
+  margin-bottom: 100px;
   display: inline-block;
   animation-name: cursor;
   animation-duration: 0.3s;
   animation-iteration-count: infinite;
-  background: linear-gradient(120deg, #f6d365 20%, #fda085 100%);
+  background-image: linear-gradient(-20deg, #2b5876 0%, #4e4376 100%);
   color: transparent;
   -webkit-background-clip: text;
+  height: 100px;
 }
 
 @keyframes cursor {
@@ -197,9 +217,10 @@ section {
   margin-bottom: 80px;
   font-family: "Permanent Marker", cursive;
   font-weight: bold;
-  background: linear-gradient(45deg, #f6d365 20%, #fda085 100%);
+  background-image: linear-gradient(-20deg, #2b5876 0%, #4e4376 100%);
   color: transparent;
   -webkit-background-clip: text;
+  height: 60px;
 }
 
 #home span {
@@ -207,7 +228,7 @@ section {
   border-radius: 20px;
   cursor: pointer;
   font-family: "Permanent Marker", cursive;
-  background: linear-gradient(45deg, #f6d365 0%, #fda085 100%);
+  background-image: linear-gradient(-20deg, #2b5876 0%, #4e4376 100%);
   color: transparent;
   -webkit-background-clip: text;
 }
@@ -216,19 +237,18 @@ section {
   width: 100%;
   overflow: hidden;
   margin-top: 50px;
+  white-space: nowrap;
 }
 
 #texts {
-  position: relative;
-  width: 2000px;
-  animation: moving 60s linear infinite;
-  overflow: hidden;
+  display: inline-block;
+  animation: moving 100s linear infinite;
   height: 100px;
 }
 
 @keyframes moving {
   from {
-    transform: translateX(+95%);
+    transform: translateX(45%);
   }
   to {
     transform: translateX(-50%);
@@ -239,7 +259,7 @@ section {
   position: fixed;
   width: 100px;
   height: 500px;
-  background: linear-gradient(120deg, #ffecd2 0%, #fcb69f 100%);
+  background-image: linear-gradient(-225deg, #e3fdf5 0%, #ffe6fa 100%);
   bottom: 50%;
   transform: translateY(+50%);
   right: 15px;
@@ -260,7 +280,7 @@ section {
   display: flex;
   justify-content: center;
   align-items: center;
-  color: white;
+  color: black;
 }
 
 #sideBar #skillA {
@@ -272,7 +292,7 @@ section {
 }
 
 #sideBar a:hover {
-  background: linear-gradient(120deg, #ffecd2 0%, #fcb69f 100%);
+  background-image: linear-gradient(-225deg, #ffe6fa 0%, #e3fdf5 100%);
   border-bottom: 1px solid black;
   color: black;
 }
@@ -322,7 +342,14 @@ section {
   font-size: 4rem;
   font-weight: bold;
   text-align: center;
-  margin-bottom: 100px;
+  margin-bottom: 20px;
+}
+
+#project h5 {
+  text-align: center;
+  margin-bottom: 70px;
+  font-family: "Hi Melody", sans-serif;
+  font-size: 20px;
 }
 
 #img-container {
@@ -333,12 +360,123 @@ section {
   flex-wrap: wrap;
   object-fit: cover;
 }
+.image {
+  position: relative;
+  width: 300px;
+  height: 300px;
+  perspective: 1000px;
+  margin: 10px;
+}
+
+#image2 {
+  position: relative;
+  top: 42px;
+  width: 300px;
+  height: 300px;
+}
+
+.front {
+  position: absolute;
+  width: 100%;
+  height: 100%;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  backface-visibility: hidden;
+  box-shadow: 3px 3px 3px rgba(0, 0, 0, 0.5);
+}
+
+.back {
+  position: absolute;
+  width: 100%;
+  height: 100%;
+  background-color: white;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  flex-direction: column;
+  text-align: center;
+  color: black;
+  transform: rotateY(180deg);
+  backface-visibility: hidden;
+  box-shadow: 3px 3px 3px rgba(0, 0, 0, 0.5);
+}
+
+.back-h3 {
+  width: 100%;
+  padding: 10px;
+  font-size: 12px;
+  padding-bottom: 30px;
+  font-weight: bold;
+  line-height: 20px;
+}
+.back-skill {
+  padding-bottom: 30px;
+  font-size: 12px;
+}
+
+.back-h4 {
+  font-weight: bold;
+}
+
+.back-p {
+  padding: 5px;
+  line-height: 20px;
+}
+
+.back-work {
+  font-size: 12px;
+  padding-bottom: 30px;
+}
+
+.image.flip .front {
+  transform: rotateY(180deg);
+  transition: transform 1s;
+}
+
+.image.flip .back {
+  transform: rotateY(0);
+  transition: transform 1s;
+}
+
 #img-container img {
   width: 300px;
   height: 300px;
   margin: 10px;
   display: flex;
+  transition: opacity 0.5s ease;
 }
+
+#img2 {
+  width: 300px;
+  height: 300px;
+  margin: 10px;
+  display: flex;
+  transition: opacity 0.5s ease;
+}
+
+.btn {
+  position: absolute;
+  bottom: 50px;
+  left: 50%;
+  transform: translateX(-50%);
+  background-color: black;
+  color: white;
+  border: none;
+  padding: 10px 20px;
+  cursor: pointer;
+  border-radius: 20px;
+  display: none;
+}
+
+.image:hover img {
+  opacity: 0.2;
+}
+
+.image:hover .btn {
+  display: block;
+}
+
 #introduce-container {
   margin: 10px;
 }
@@ -362,7 +500,7 @@ section {
 
 #introduce h1 {
   text-align: center;
-  margin-bottom: 100px;
+  margin-bottom: 60px;
 }
 
 .Intro1 {
@@ -383,13 +521,14 @@ section {
   align-items: center;
   font-size: 1.2rem;
   line-height: 30px;
+  font-family: "Nanum Gothic", sans-serif;
 }
 
 #skill h1 {
   font-size: 4rem;
   font-weight: bold;
   text-align: center;
-  margin-bottom: 100px;
+  margin-bottom: 60px;
 }
 
 .skills {
@@ -418,10 +557,11 @@ section {
   flex-direction: column;
   font-size: 1.2rem;
   border-bottom: 1px solid rgba(0, 0, 0, 0.3);
+  font-family: "Nanum Gothic", sans-serif;
 }
 
 body {
-  background: linear-gradient(120deg, #ffecd2 0%, #fcb69f 100%);
+  background-image: linear-gradient(-225deg, #e3fdf5 0%, #ffe6fa 100%);
 }
 
 .permanent-marker-regular {
@@ -438,6 +578,12 @@ body {
 
 .nanum-gothic-regular {
   font-family: "Nanum Gothic", sans-serif;
+  font-weight: 400;
+  font-style: normal;
+}
+
+.hi-melody-regular {
+  font-family: "Hi Melody", sans-serif;
   font-weight: 400;
   font-style: normal;
 }

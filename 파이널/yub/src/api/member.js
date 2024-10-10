@@ -1,9 +1,17 @@
 import axios from "axios";
 
 const instance = axios.create({
-  baseURL: "http://localhost:3000/api/member/",
+  baseURL: "http://localhost:8080/api/",
 });
 
-export const mvoing = async (data) => {
-  return await instance.post("Board");
+export const moving = async (data) => {
+  return await instance.post("board", data);
+};
+
+export const getBoards = async () => {
+  return await instance.get("board");
+};
+
+export const writeBoard = async (data) => {
+  return await instance.post("board", data);
 };

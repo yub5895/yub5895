@@ -10,6 +10,7 @@ const Main = () => {
     TF: "",
     PJ: "",
   });
+  const [posts, setPosts] = useState([]);
 
   const change = (e) => {
     const { id, value } = e.target;
@@ -20,6 +21,7 @@ const Main = () => {
     const mbtiResult = `${mbti.IE}${mbti.SN}${mbti.TF}${mbti.PJ}`;
     if (mbtiResult.length === 4) {
       navigate(`/Moving/${mbtiResult}`);
+      setPosts(Response.data);
     } else {
       alert("4개 다 선택해야죠");
     }
