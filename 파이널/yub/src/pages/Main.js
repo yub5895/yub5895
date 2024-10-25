@@ -12,11 +12,13 @@ const Main = () => {
   });
   const [posts, setPosts] = useState([]);
 
+  // MBTI 값따기
   const change = (e) => {
     const { id, value } = e.target;
     setMbti((next) => ({ ...next, [id]: value }));
   };
 
+  // MBTI게시판으로 이동
   const moving = () => {
     const mbtiResult = `${mbti.IE}${mbti.SN}${mbti.TF}${mbti.PJ}`;
     if (mbtiResult.length === 4) {
