@@ -14,36 +14,21 @@ const Modal = ({ isOpen, onClose }) => {
     boardFile: null,
   });
 
-  const fileUpload = (e) => {
-    setContent({
-      ...content,
-      boardFile: e.target.files[0],
-    });
-  };
-
   const upload = async () => {
     const formData = new FormData();
     formData.append("title", content.title);
     formData.append("writer", content.writer);
     formData.append("content", content.content);
     formData.append("mbtiType", content.mbtiType);
-    formData.append("boardFile", content.boardFile);
-
-    console.log([...formData]);
+    if (content.boardFile) {
+      formData.append("boardFile", content.boardFile);
+    }
 
     const result = await writeBoard(formData);
     updateboard(result.data.content);
     onClose();
   };
-  /*
-  const imgUpload = async () => {
-    const formData = new FormData();
-    formData.append("url", content.url);
-    const result = await writeBoard(formData);
-    updateboard(result.data);
-    onClose();
-  };
-*/
+
   const updateboard = () => {
     window.location.reload();
   };
@@ -84,7 +69,16 @@ const Modal = ({ isOpen, onClose }) => {
             <h2 className="h2Title">이미지 첨부</h2>
           </div>
           <div className="modal-title2">
-            <input type="file" id="inputImg" onChange={fileUpload}></input>
+            <input
+              type="file"
+              id="inputImg"
+              onChange={(e) =>
+                setContent({
+                  ...content,
+                  boardFile: e.target.files[0],
+                })
+              }
+            ></input>
           </div>
           <div className="modal-title">
             <h2 className="h2Title">내용</h2>

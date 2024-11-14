@@ -1,0 +1,47 @@
+.paging {
+  width: 100px;
+  height: 30px;
+  position: relative;
+  top: 72px;
+  right: 150px;
+
+  ul {
+    display: flex;
+
+    li {
+      padding: 5px;
+      font-weight: bold;
+      font-size: 1.2rem;
+
+      button {
+        background-color: transparent;
+        border: none;
+        font-size: 1.3rem;
+        font-weight: bold;
+        cursor: pointer;
+        position: relative;
+        bottom: 2px;
+
+        &:hover {
+          color: #999;
+        }
+      }
+
+      .arrow {
+        font-size: 2rem;
+      }
+
+      .number {
+        height: 50px;
+
+        &:hover {
+          color: #999;
+        }
+      }
+
+      #numberLi {
+        margin-top: 30px;
+      }
+    }
+  }
+}

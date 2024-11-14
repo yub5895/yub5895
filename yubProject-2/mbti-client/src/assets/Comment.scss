@@ -1,0 +1,104 @@
+.comment-container {
+  margin: 10px;
+
+  #writerDiv {
+    display: flex;
+
+    h3 {
+      margin-left: 15px;
+      margin-top: 3px;
+    }
+  }
+
+  #contentDiv {
+    display: flex;
+
+    h3 {
+      padding-top: 5px;
+    }
+  }
+
+  button {
+    width: 50px;
+    height: 25px;
+    margin-left: 10px;
+    margin-top: 2px;
+    border: none;
+    cursor: pointer;
+    background-color: #eaeaea;
+    color: #545861;
+    border-radius: 5px;
+
+    &:hover {
+      background-color: #065fd4;
+      color: #eaeaea;
+    }
+  }
+}
+
+.reply-container {
+  display: flex;
+
+  button {
+    width: 50px;
+    height: 25px;
+    margin-left: 10px;
+    margin-top: 2px;
+    border: none;
+    cursor: pointer;
+    background-color: #eaeaea;
+    color: #545861;
+    border-radius: 5px;
+
+    &:hover {
+      background-color: #065fd4;
+      color: #eaeaea;
+    }
+  }
+}
+
+#contentReply {
+  width: 1000px;
+  height: 30px;
+  border: none;
+  border-bottom: 1px solid black;
+  margin-left: 30px;
+
+  &:focus {
+    outline: none;
+    border-bottom: 2px solid black;
+  }
+}
+
+#writerReply {
+  width: 100px;
+  height: 30px;
+  margin-left: 10px;
+  border: none;
+  border-bottom: 1px solid black;
+
+  &:focus {
+    outline: none;
+    border-bottom: 2px solid black;
+  }
+}
+
+.tagDiv {
+  font-weight: bold;
+  font-size: 1.2rem;
+
+  span {
+    background-color: #e4f0fb;
+    color: #1b69b6;
+  }
+}
+
+.reply-items {
+  margin-left: 50px;
+
+  .arrow {
+    position: relative;
+    right: 25px;
+    top: 15px;
+  }
+}

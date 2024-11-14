@@ -10,11 +10,12 @@ export const moving = async (data) => {
 };
 
 //전체글 가져오기(페이징+검색)
-export const getBoards = async (page, keyword = "") => {
+export const getBoards = async (page, keyword = "", mbti) => {
   return await instance.get("board", {
     params: {
       keyword,
       page,
+      mbti,
     },
   });
 };
@@ -29,8 +30,9 @@ export const writeBoard = async (data) => {
   return await instance.post("board", data);
 };
 
-// 글1개 가져오기(결국 사용안했음)
+// 글1개 가져오기(결국 사용했음)
 export const getBoard = async (data) => {
+  console.log(data);
   return await instance.get(`board/${data}`);
 };
 

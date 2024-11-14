@@ -1,6 +1,6 @@
-import { useState, useEffect } from "react";
+import React, { useState, useEffect, useCallback } from "react";
 import { useNavigate, useParams } from "react-router-dom";
-import { getBoards } from "../../api/member";
+import { getBoards, getBoard } from "../../api/member";
 import "../../assets/Post.scss";
 import { addComment as addCommentAPI, getComments } from "../../api/comment";
 import { createComment, fetchComment } from "../../store/commentSlice";
@@ -14,7 +14,13 @@ const Post = () => {
   const { mbti } = useParams();
   const { no } = useParams();
   const [boards, setBoards] = useState([]);
+  const [board, setBoard] = useState({
+    no: no,
+    title: "",
+    writer: "",
+  });
   const navigate = useNavigate();
+  const [hotPosts, setHotPosts] = useState([]);
 
   const [isComment, setIsComment] = useState(false);
   const [comment, setComment] = useState({
@@ -34,14 +40,23 @@ const Post = () => {
   };
 
   //boardAPI 불러오기
-  const boardAPI = async () => {
-    const result = await getBoards();
-    setBoards(result.data.content);
+  const boardAPI = async (data) => {
+    const result = await getBoard(data);
+    console.log(result.data);
+    setBoard(result.data);
   };
+  const fetchHotPosts = useCallback(async () => {
+    const result = await getBoards(1, "");
+    const hotPostsData = result.data.content.filter(
+      (board) => board.count >= 10
+    );
+    setHotPosts(hotPostsData);
+  }, []);
 
   useEffect(() => {
-    boardAPI();
-  }, []);
+    boardAPI(no);
+    fetchHotPosts();
+  }, [no]);
 
   const postOpen = async (no) => {
     await updateCount(no);
@@ -88,36 +103,38 @@ const Post = () => {
           MBTIS
         </button>
 
-        <div>{mbti} 놀이터</div>
+        <div>{mbti} HOME</div>
       </div>
 
       <div className="boardMain">
         <section className="favorite">
-          <HotPosts boards={boards} mbti={mbti} postOpen={postOpen} />
+          <HotPosts boards={hotPosts} mbti={mbti} postOpen={postOpen} />
         </section>
 
         <div className="boardMain2">
           <section className="postSection">
-            {boards.map(
-              (board) =>
-                board.no == no && (
-                  <div className="postBoard">
-                    <div className="postHeader">
-                      <h2>제목 : {board.title}</h2>
-                      <h3>작성자 : {board.writer}</h3>
-                      <h3>작성일 : {board.writeDate}</h3>
-                      <h3>조회수 : {board.count} 회</h3>
-                    </div>
-                    <div className="postMain">
-                      <h2>내용</h2>
-                      <p>{board.content}</p>
-                    </div>
-                  </div>
-                )
-            )}
+            <div className="postBoard">
+              <h2>{board.title}</h2>
+              <div className="postHeader">
+                <h3>
+                  작성자 <p>{board.writer}</p>
+                </h3>
+                <h4>
+                  작성일 <p>{board.writeDate}</p>
+                </h4>
+                <h4>
+                  조회수 <p>{board.count} 회</p>
+                </h4>
+              </div>
+              <div className="postMain">
+                <img src={board.url}></img>
+                <div>{board.content}</div>
+              </div>
+            </div>
             <div className="postFooter">
               <h2>댓글</h2>
               <input
+                id="contentInput"
                 type="text"
                 placeholder="댓글 작성"
                 onChange={(e) =>
@@ -125,22 +142,21 @@ const Post = () => {
                 }
               />
               <input
+                id="commentInput"
                 type="text"
                 placeholder="작성자"
                 onChange={(e) =>
                   setComment({ ...comment, commentWriter: e.target.value })
                 }
               />
-
-              <div className="commentBtn">
-                <button onClick={addComment}>작성</button>
-              </div>
-
+              <button onClick={addComment} className="commentBtn">
+                작성
+              </button>
               <div className="commentList">
                 {comments.data.map(
-                  (comment) =>
+                  (comment, _index) =>
                     comment.no == no && (
-                      <Comment comment={comment} />
+                      <Comment comment={comment} key={_index} />
                       /*
                       <div>
                         <h2>댓글 : {comment.commentContent}</h2>

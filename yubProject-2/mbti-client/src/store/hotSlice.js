@@ -3,16 +3,19 @@ import { createSlice } from "@reduxjs/toolkit";
 const hotSlice = createSlice({
   name: "hotPost",
   initialState: {
-    time: true,
+    time: 0,
     hidden: false,
   },
   reducers: {
     hidePost: (state) => {
-      state.time = false;
       state.hidden = true;
+    },
+    addHotPost: (state, action) => {
+      state.time = action.payload;
+      state.hidden = false;
     },
   },
 });
 
-export const { hidePost } = hotSlice.actions;
+export const { hidePost, addHotPost } = hotSlice.actions;
 export default hotSlice;

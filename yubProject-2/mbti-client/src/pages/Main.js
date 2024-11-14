@@ -25,7 +25,7 @@ const Main = () => {
       navigate(`/Moving/${mbtiResult}`);
       setPosts(Response.data);
     } else {
-      alert("4개 다 선택해야죠");
+      alert("4개 모두 선택해주세요!");
     }
   };
   return (

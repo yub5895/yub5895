@@ -29,12 +29,15 @@ create table comment (
 
 select * from board;
 
-DELETE from board WHERE title = "gd";
+DELETE FROM comment WHERE no IN (SELECT no FROM board WHERE mbti_type = "ISTJ");
+DELETE from board WHERE no = "349";
 
 
 select * from board JOIN comment USING (no);
 
-insert into board (title, writer, content, mbti_type) VALUES ("ㅎㅇㅎㅇ", "배영운", "인사가 되는지 테스트 중입니다. 글 길게쓰면 어떻게 나오는 지도 테스트 중입니다.", "ISTP");
+insert into board (title, writer, content, mbti_type) VALUES ("페이징테스트9"
+
+, "관리자", "인사가 되는지 테스트 중입니다. 글 길게쓰면 어떻게 나오는 지도 테스트 중입니다.", "ISTP");
 
 insert into board (title, content, mbti_type) VALUES ("안녕하세여", "2222", "ISTP");
 
